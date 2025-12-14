@@ -1,10 +1,9 @@
 [workspace]
 resolver = "2"
 members = [
-    "core/scheduler",
-    "core/cost-engine",
-    "core/optimizer",
+    "core/*",
     "worker",
+    "test-client",
 ]
 
 [workspace.package]

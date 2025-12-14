@@ -9,10 +9,10 @@ The Go API server is a placeholder component that provides REST API endpoints. *
 ## Why Go API is Optional
 
 TGP's core distributed scheduling system is complete with:
-- ✅ Rust scheduler with Formula 4.1 (VPS #1)
-- ✅ Rust worker with Docker executor (VPS #2)
-- ✅ gRPC test client for job submission
-- ✅ All end-to-end tests passing
+- **Rust scheduler with Formula 4.1 (VPS #1)
+- **Rust worker with Docker executor (VPS #2)
+- **gRPC test client for job submission
+- **All end-to-end tests passing
 
 The Go API server would provide additional REST endpoints but is not required for operation.
 

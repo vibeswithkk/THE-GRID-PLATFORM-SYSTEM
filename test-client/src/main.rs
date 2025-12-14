@@ -141,8 +141,8 @@ async fn submit_job(
     let job = response.into_inner();
 
     if job.success {
-        println!("\n✅ Job Submitted Successfully!");
-        println!("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+        println!("\n**Job Submitted Successfully!");
+        println!("------------------------------");
         println!("Job ID:        {}", job.job_id);
         println!("Assigned Node: {}", job.assigned_node);
         
@@ -157,9 +157,9 @@ async fn submit_job(
         }
         
         println!("\nMessage: {}", job.message);
-        println!("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n");
+        println!("------------------------------\n");
     } else {
-        println!("\n❌ Job Submission Failed!");
+        println!("\n**Job Submission Failed!");
         println!("Message: {}", job.message);
     }
 
@@ -176,8 +176,8 @@ async fn get_job_status(
     let response = client.get_job_status(request).await?;
     let status = response.into_inner();
 
-    println!("\n📊 Job Status");
-    println!("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+    println!("\nJob Status");
+    println!("------------------------------");
     println!("Job ID:        {}", status.job_id);
     println!("Status:        {:?}", status.status);
     println!("Assigned Node: {}", status.assigned_node);
@@ -186,7 +186,7 @@ async fn get_job_status(
         println!("\nFinal Cost:");
         println!("  C_total: ${:.6}", cost.total_cost_usd);
     }
-    println!("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n");
+    println!("------------------------------\n");
 
     Ok(())
 }
@@ -200,8 +200,8 @@ async fn get_cluster_status(
     let response = client.get_cluster_status(request).await?;
     let cluster = response.into_inner();
 
-    println!("\n🌐 Cluster Status");
-    println!("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+    println!("\nCluster Status");
+    println!("------------------------------");
     println!("Total Nodes:   {}", cluster.total_nodes);
     println!("Active Nodes:  {}", cluster.active_nodes);
     println!("Total Jobs:    {}", cluster.total_jobs);
@@ -218,7 +218,7 @@ async fn get_cluster_status(
             println!("    Active:     {}", node.is_active);
         }
     }
-    println!("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n");
+    println!("------------------------------\n");
 
     Ok(())
 }

@@ -51,10 +51,10 @@ VPS #1 (zenith1)              VPS #2 (srv1133629)
 
 ## What's Deployed
 
-✅ **Economic Scheduler** - Cost-based job placement  
-✅ **Cost Calculator** - Formula 4.1 (C_total)  
-✅ **SLA Validation** - Budget, latency, deadline constraints  
-✅ **Resource Checking** - CPU, RAM, GPU availability  
+****Economic Scheduler** - Cost-based job placement  
+****Cost Calculator** - Formula 4.1 (C_total)  
+****SLA Validation** - Budget, latency, deadline constraints  
+****Resource Checking** - CPU, RAM, GPU availability  
 
 ---
 

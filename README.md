@@ -5,26 +5,26 @@
 **Author:** vibeswithkk  
 **Version:** 0.1.0 (Production-Ready)  
 **License:** Apache 2.0  
-**Status:** ✅ Fully Operational
+**Status:** **Fully Operational
 
 ---
 
-## 🎯 What is TGP?
+## What is TGP?
 
 **TGP (The Grid Platform)** is a production-ready, distributed scheduler that optimizes job placement using **Formula 4.1 TCO (Total Cost of Ownership)** calculations. Built with Rust for performance and designed for zero-cost infrastructure.
 
 ### Key Features
 
-✅ **Economic Scheduling** - Formula 4.1 cost optimization (C_comp + C_data + C_idle)  
-✅ **Distributed Architecture** - Multi-node coordination via gRPC  
-✅ **Docker Integration** - Container-based job execution with resource limits  
-✅ **Real-time Tracking** - Job status and cluster monitoring  
-✅ **Sub-100ms Latency** - Fast scheduling decisions (~30ms average)  
-✅ **Zero-Cost Option** - Runs on existing VPS infrastructure
+****Economic Scheduling** - Formula 4.1 cost optimization (C_comp + C_data + C_idle)  
+****Distributed Architecture** - Multi-node coordination via gRPC  
+****Docker Integration** - Container-based job execution with resource limits  
+****Real-time Tracking** - Job status and cluster monitoring  
+****Sub-100ms Latency** - Fast scheduling decisions (~30ms average)  
+****Zero-Cost Option** - Runs on existing VPS infrastructure
 
 ---
 
-## 🚀 Quick Start
+## Quick Start
 
 ### Test the Live System
 
@@ -51,7 +51,7 @@ cargo build --release --bin tgp-test-client
 
 ---
 
-## 📊 System Architecture
+## System Architecture
 
 ```
 ┌──────────────┐         ┌─────────────────┐
@@ -74,7 +74,7 @@ cargo build --release --bin tgp-test-client
 
 ---
 
-## 🏗️ Project Structure
+## Project Structure
 
 ```
 TDP/
@@ -91,7 +91,7 @@ TDP/
 
 ---
 
-## 💡 Formula 4.1 - Economic Scheduling
+## Formula 4.1 - Economic Scheduling
 
 TGP implements the **Formula 4.1** TCO optimization:
 
@@ -120,7 +120,7 @@ Cost Estimate:
 
 ---
 
-## 🔧 Development
+## Development
 
 ### Prerequisites
 
@@ -156,27 +156,27 @@ cargo test
 
 ---
 
-## 📈 Verified Performance
+## Verified Performance
 
 | Metric | Value | Status |
 |--------|-------|--------|
-| **Scheduling Latency** | ~30ms | ✅ Excellent |
-| **Job Submission** | ~30ms | ✅ Fast |
-| **Status Query** | ~25ms | ✅ Fast |
-| **Docker Execution** | 1-3s | ✅ Good |
-| **Formula 4.1 Calc** | <10ms | ✅ Excellent |
+| **Scheduling Latency** | ~30ms | **Excellent |
+| **Job Submission** | ~30ms | **Fast |
+| **Status Query** | ~25ms | **Fast |
+| **Docker Execution** | 1-3s | **Good |
+| **Formula 4.1 Calc** | <10ms | **Excellent |
 
 ### Validated Features
 
-✅ **Worker Registration** - Multi-node cluster coordination  
-✅ **Job Submission** - Formula 4.1 cost-based placement  
-✅ **Docker Execution** - Container isolation with resource limits  
-✅ **Status Tracking** - Real-time job lifecycle monitoring  
-✅ **Resource Reporting** - 10-second heartbeat intervals  
+****Worker Registration** - Multi-node cluster coordination  
+****Job Submission** - Formula 4.1 cost-based placement  
+****Docker Execution** - Container isolation with resource limits  
+****Status Tracking** - Real-time job lifecycle monitoring  
+****Resource Reporting** - 10-second heartbeat intervals  
 
 ---
 
-## 🎯 Use Cases
+## Use Cases
 
 ### ML Training Jobs
 ```bash
@@ -207,19 +207,19 @@ cargo test
 
 ---
 
-## 🧪 Tested Scenarios
+## Tested Scenarios
 
 **Docker Job Execution (VPS #2):**
-- ✅ Alpine echo job - Output captured correctly
-- ✅ CPU benchmark - 100k iterations completed
-- ✅ System info - Container isolation verified
-- ✅ Resource limits - CPU/RAM constraints enforced
+- **Alpine echo job - Output captured correctly
+- **CPU benchmark - 100k iterations completed
+- **System info - Container isolation verified
+- **Resource limits - CPU/RAM constraints enforced
 
 **Distributed Coordination:**
-- ✅ Scheduler ↔ Worker gRPC communication
-- ✅ Node registration and heartbeat
-- ✅ Real-time resource reporting
-- ✅ Job state synchronization
+- **Scheduler ↔ Worker gRPC communication
+- **Node registration and heartbeat
+- **Real-time resource reporting
+- **Job state synchronization
 
 ---
 
@@ -233,7 +233,7 @@ cargo test
 
 ## 🛣️ Roadmap
 
-### ✅ Completed (Phases 1-6)
+### **Completed (Phases 1-6)
 - [x] Economic Scheduler with Formula 4.1
 - [x] gRPC distributed communication
 - [x] Docker-based job execution
@@ -269,12 +269,12 @@ git push origin feature/amazing-feature
 
 ---
 
-## 📊 Project Stats
+## Project Stats
 
 **Lines of Code:** ~2,500 (Rust)  
 **Components:** 3 binaries (scheduler, worker, test-client)  
 **Infrastructure:** 2 VPS nodes  
-**Tests:** All passing ✅  
+**Tests:** All passing ** 
 **Performance:** Sub-100ms scheduling  
 **Cost:** $0 (using existing VPS)
 
@@ -296,6 +296,6 @@ Built with:
 
 ---
 
-**Made with ❤️ by vibeswithkk**
+**Made with by vibeswithkk**
 
 *TGP - Making distributed scheduling economical and efficient*

@@ -1,0 +1,43 @@
+[workspace]
+resolver = "2"
+members = [
+    "core/scheduler",
+    "core/cost-engine",
+    "core/optimizer",
+]
+
+[workspace.package]
+version = "0.1.0"
+authors = ["vibeswithkk"]
+edition = "2021"
+rust-version = "1.75"
+license = "Apache-2.0"
+
+[workspace.dependencies]
+# Async runtime
+tokio = { version = "1.35", features = ["full"] }
+async-trait = "0.1"
+
+# Serialization
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+
+# HTTP/gRPC
+tonic = "0.11"
+prost = "0.12"
+
+# Logging
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+
+# Error handling
+anyhow = "1.0"
+thiserror = "1.0"
+
+# Testing
+criterion = "0.5"
+
+[profile.release]
+opt-level = 3
+lto = true
+codegen-units = 1

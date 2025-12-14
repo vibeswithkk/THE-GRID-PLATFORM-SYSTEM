@@ -16,8 +16,6 @@
 mod executor;
 
 use anyhow::{Context, Result};
-use executor::{JobExecution, JobExecutor};
-use std::collections::HashMap;
 use std::fs;
 use std::time::Duration;
 use tonic::transport::Channel;

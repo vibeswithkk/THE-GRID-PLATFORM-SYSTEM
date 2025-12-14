@@ -81,6 +81,7 @@ pub struct JobState {
 #[derive(Clone)]
 pub struct EconomicScheduler {
     cost_calculator: CostCalculator,
+    #[allow(dead_code)]  // Reserved for future advanced placement algorithms
     optimizer: Optimizer,
     /// Thread-safe node registry for concurrent gRPC access
     available_nodes: Arc<Mutex<HashMap<String, NodeInfo>>>,

@@ -3,12 +3,14 @@
 //! Executes jobs in isolated Docker containers with resource limits
 //! according to TGP blueprint specifications
 
+#![allow(dead_code, unused_imports)]
+
 use anyhow::{Context, Result};
 use bollard::container::{
     Config, CreateContainerOptions, LogsOptions, RemoveContainerOptions, StartContainerOptions,
     StopContainerOptions, WaitContainerOptions,
 };
-use bollard::models::{HostConfig, ResourcesUlimits};
+use bollard::models::HostConfig;
 use bollard::Docker;
 use std::collections::HashMap;
 use tracing::{error, info, warn};

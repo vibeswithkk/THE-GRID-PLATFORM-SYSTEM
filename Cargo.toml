@@ -38,6 +38,9 @@ thiserror = "1.0"
 # Testing
 criterion = "0.5"
 
+[workspace.dependencies.tonic-build]
+version = "0.11"
+
 [profile.release]
 opt-level = 3
 lto = true

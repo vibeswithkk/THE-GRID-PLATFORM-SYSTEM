@@ -2,14 +2,13 @@
 //!
 //! Implements optimization algorithms for job placement and resource allocation
 
-/// Optimizer for finding optimal job placements
-pub struct Optimizer {
-    // Optimization configuration
-}
+/// Optimizer for job placement decisions
+#[derive(Debug, Clone)]
+pub struct Optimizer;
 
 impl Optimizer {
     pub fn new() -> Self {
-        Self {}
+        Self
     }
 
     /// Find optimal placement using greedy algorithm (MVP)

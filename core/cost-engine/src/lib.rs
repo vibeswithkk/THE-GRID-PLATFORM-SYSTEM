@@ -29,9 +29,9 @@ impl TotalCost {
     }
 }
 
-/// Cost calculator implementing Economic Scheduler formulas
+/// Cost calculator implementing Formula 4.1 from TGP blueprint
+#[derive(Debug, Clone)]
 pub struct CostCalculator {
-    // Configuration for cost calculation
 }
 
 impl CostCalculator {

@@ -2,6 +2,8 @@
 //! 
 //! Core scheduling engine that optimizes job placement based on cost, performance, and SLA constraints.
 
+pub mod grpc;
+
 use anyhow::Result;
 use serde::{Deserialize, Serialize};
 use std::collections::HashMap;
@@ -56,6 +58,7 @@ pub struct Placement {
 }
 
 /// The Economic Scheduler - core component of TGP
+#[derive(Clone)]
 pub struct EconomicScheduler {
     cost_calculator: CostCalculator,
     optimizer: Optimizer,

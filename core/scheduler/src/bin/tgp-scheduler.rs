@@ -6,7 +6,7 @@ use tgp_scheduler::EconomicScheduler;
 use tracing_subscriber;
 
 #[tokio::main]
-async fn main() {
+async fn main() -> Result<(), Box<dyn std::error::Error>> {
     // Initialize logging
     tracing_subscriber::fmt()
         .with_env_filter(
@@ -21,10 +21,12 @@ async fn main() {
     let scheduler = EconomicScheduler::new();
 
     tracing::info!("Scheduler initialized");
-    tracing::info!("TODO: Start gRPC server on port 50051");
+
+    // Start gRPC server
+    let addr = "0.0.0.0:50051".parse()?;
+    tracing::info!("Starting gRPC server on {}", addr);
     
-    // For now, keep running
-    tokio::signal::ctrl_c().await.expect("Failed to listen for ctrl-c");
-    
-    tracing::info!("Scheduler shutting down");
+    tgp_scheduler::grpc::start_grpc_server(scheduler, addr).await?;
+
+    Ok(())
 }

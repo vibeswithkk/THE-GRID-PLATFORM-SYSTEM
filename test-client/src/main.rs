@@ -22,7 +22,7 @@ use proto::{
 #[command(about = "TGP Test Client - Submit jobs and test scheduler", long_about = None)]
 struct Cli {
     /// Scheduler address
-    #[arg(short, long, default_value = "http://202.155.157.122:50051")]
+    #[arg(short, long, default_value = "http://YOUR_SCHEDULER_IP:50051")]
     scheduler: String,
 
     #[command(subcommand)]

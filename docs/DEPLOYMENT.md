@@ -11,7 +11,7 @@
 
 ```bash
 # SSH to VPS #1
-ssh root@202.155.157.122
+ssh root@YOUR_SCHEDULER_IP
 
 # Clone repository
 git clone git@github.com:vibeswithkk/TDP.git
@@ -29,7 +29,7 @@ curl localhost:50051 # Should connect to scheduler gRPC
 
 ```bash
 # SSH to VPS #2
-ssh root@72.61.119.83
+ssh root@YOUR_WORKER_IP
 
 # Install TGP worker agent (coming in next phase)
 # For now, this VPS is ready for workload execution
@@ -41,7 +41,7 @@ ssh root@72.61.119.83
 
 ```
 VPS #1 (zenith1)              VPS #2 (srv1133629)
-202.155.157.122               72.61.119.83
+YOUR_SCHEDULER_IP               YOUR_WORKER_IP
 ├─ TGP Scheduler              ├─ Worker Agent
 │  └─ Port 50051 (gRPC)       │  └─ Reports resources
 └─ Cost Calculator            └─ Executes jobs

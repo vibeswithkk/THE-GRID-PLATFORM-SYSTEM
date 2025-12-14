@@ -214,7 +214,7 @@ The scheduler supports the following configuration options:
 Workers can be configured via environment variables or systemd service file:
 
 ```bash
-SCHEDULER_URL=http://202.155.157.122:50051
+SCHEDULER_URL=http://YOUR_SCHEDULER_IP:50051
 NODE_ID=worker-001
 REPORT_INTERVAL=10s
 ```

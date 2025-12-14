@@ -100,11 +100,11 @@ echo "##########################################---"
 echo ""
 
 echo "Testing scheduler connectivity (VPS #1)..."
-timeout 5 bash -c 'cat < /dev/null > /dev/tcp/202.155.157.122/50051' 2>/dev/null
+timeout 5 bash -c 'cat < /dev/null > /dev/tcp/YOUR_SCHEDULER_IP/50051' 2>/dev/null
 report_test $? "Scheduler port 50051 reachable"
 
 echo "Testing VPS #2 SSH..."
-sshpass -p '@@wahyu123OK' ssh -o StrictHostKeyChecking=no -o ConnectTimeout=5 root@72.61.119.83 'echo ok' > /dev/null 2>&1
+sshpass -p 'YOUR_VPS_PASSWORD' ssh -o StrictHostKeyChecking=no -o ConnectTimeout=5 root@YOUR_WORKER_IP 'echo ok' > /dev/null 2>&1
 report_test $? "VPS #2 SSH connectivity"
 
 echo ""
@@ -118,11 +118,11 @@ echo "##########################################---"
 echo ""
 
 echo "Checking scheduler container..."
-sshpass -p '@@wahyu123OK' ssh -o StrictHostKeyChecking=no root@202.155.157.122 'docker ps | grep tgp-scheduler' > /dev/null 2>&1
+sshpass -p 'YOUR_VPS_PASSWORD' ssh -o StrictHostKeyChecking=no root@YOUR_SCHEDULER_IP 'docker ps | grep tgp-scheduler' > /dev/null 2>&1
 report_test $? "Scheduler container running"
 
 echo "Checking worker service..."
-sshpass -p '@@wahyu123OK' ssh -o StrictHostKeyChecking=no root@72.61.119.83 'systemctl is-active tgp-worker' > /dev/null 2>&1
+sshpass -p 'YOUR_VPS_PASSWORD' ssh -o StrictHostKeyChecking=no root@YOUR_WORKER_IP 'systemctl is-active tgp-worker' > /dev/null 2>&1
 report_test $? "Worker service active"
 
 echo ""
@@ -168,13 +168,13 @@ echo "##########################################---"
 echo ""
 
 echo "Test 1: Simple echo job..."
-sshpass -p '@@wahyu123OK' ssh -o StrictHostKeyChecking=no root@72.61.119.83 \
+sshpass -p 'YOUR_VPS_PASSWORD' ssh -o StrictHostKeyChecking=no root@YOUR_WORKER_IP \
   'docker run --rm --cpus="1" --memory="128m" alpine:latest echo "TGP Test"' > /tmp/docker-test1.txt 2>&1
 grep -q "TGP Test" /tmp/docker-test1.txt
 report_test $? "Docker echo execution"
 
 echo "Test 2: Resource limits..."
-sshpass -p '@@wahyu123OK' ssh -o StrictHostKeyChecking=no root@72.61.119.83 \
+sshpass -p 'YOUR_VPS_PASSWORD' ssh -o StrictHostKeyChecking=no root@YOUR_WORKER_IP \
   'docker run --rm --cpus="1" --memory="128m" alpine:latest sh -c "echo ok"' > /tmp/docker-test2.txt 2>&1
 grep -q "ok" /tmp/docker-test2.txt
 report_test $? "Docker resource limits"

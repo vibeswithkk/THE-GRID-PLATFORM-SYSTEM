@@ -50,7 +50,7 @@ impl WorkerConfig {
                     .and_then(|h| h.into_string().ok())
                     .unwrap_or_else(|| "worker-unknown".to_string())),
             scheduler_url: std::env::var("TGP_SCHEDULER_URL")
-                .unwrap_or_else(|_| "http://202.155.157.122:50051".to_string()),
+                .unwrap_or_else(|_| "http://YOUR_SCHEDULER_IP:50051".to_string()),
             report_interval_secs: std::env::var("TGP_REPORT_INTERVAL")
                 .ok()
                 .and_then(|v| v.parse().ok())

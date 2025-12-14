@@ -4,6 +4,7 @@ members = [
     "core/scheduler",
     "core/cost-engine",
     "core/optimizer",
+    "worker",
 ]
 
 [workspace.package]

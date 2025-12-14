@@ -1,12 +1,28 @@
 #!/bin/bash
 # Deploy worker agent to VPS #2
+# SECURITY: Use environment variables for credentials
+
 set -e
 
-VPS2_IP="72.61.119.83"
-VPS2_USER="root"
-VPS2_PASS="@@wahyu123OK"
+# Load credentials from environment or .env file
+if [ -f ".env.deployment" ]; then
+    source .env.deployment
+fi
+
+# Validate required environment variables
+if [ -z "$VPS2_IP" ] || [ -z "$VPS2_USER" ] || [ -z "$VPS2_PASS" ]; then
+    echo "ERROR: Missing required environment variables!"
+    echo "Please set: VPS2_IP, VPS2_USER, VPS2_PASS"
+    echo ""
+    echo "Example: Create .env.deployment file with:"
+    echo "  export VPS2_IP=\"your-vps-ip\""
+    echo "  export VPS2_USER=\"your-username\""
+    echo "  export VPS2_PASS=\"your-password\""
+    exit 1
+fi
 
 echo "=== Deploying TGP Worker to VPS #2 ==="
+echo "Target: $VPS2_IP"
 
 # Build worker locally (already done)
 echo "Binary: target/release/tgp-worker"
@@ -24,6 +40,9 @@ sshpass -p "$VPS2_PASS" ssh -o StrictHostKeyChecking=no \
 # Make executable
 chmod +x /usr/local/bin/tgp-worker
 
+# Note: Update scheduler URL in systemd service as needed
+SCHEDULER_URL="${TGP_SCHEDULER_URL:-http://YOUR_SCHEDULER_IP:50051}"
+
 # Create systemd service
 cat > /etc/systemd/system/tgp-worker.service <<EOF
 [Unit]
@@ -34,7 +53,7 @@ After=network.target
 Type=simple
 User=root
 Environment="TGP_NODE_ID=vps-2"
-Environment="TGP_SCHEDULER_URL=http://202.155.157.122:50051"
+Environment="TGP_SCHEDULER_URL=$SCHEDULER_URL"
 Environment="RUST_LOG=info"
 ExecStart=/usr/local/bin/tgp-worker
 Restart=always
@@ -45,7 +64,7 @@ WantedBy=multi-user.target
 EOF
 
 # Reload systemd and start worker
-systemd daemon-reload
+systemctl daemon-reload
 systemctl enable tgp-worker
 systemctl restart tgp-worker
 

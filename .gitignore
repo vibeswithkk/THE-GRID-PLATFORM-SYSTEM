@@ -45,3 +45,11 @@ Thumbs.db
 
 # Logs
 *.log
+
+# Deployment credentials (NEVER COMMIT!)
+.env.deployment
+.env.deployment.*
+*.pem
+*.key
+id_rsa*
+SECURITY_INCIDENT.md

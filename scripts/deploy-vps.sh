@@ -1,12 +1,28 @@
 #!/bin/bash
 # TGP Deployment Script for VPS
+# SECURITY: Use environment variables for credentials
+
 set -e
 
-VPS1_IP="202.155.157.122"
-VPS1_USER="root"
-VPS1_PASS="@@wahyu123OK"
+# Load credentials from environment or .env file
+if [ -f ".env.deployment" ]; then
+    source .env.deployment
+fi
+
+# Validate required environment variables
+if [ -z "$VPS1_IP" ] || [ -z "$VPS1_USER" ] || [ -z "$VPS1_PASS" ]; then
+    echo "ERROR: Missing required environment variables!"
+    echo "Please set: VPS1_IP, VPS1_USER, VPS1_PASS"
+    echo ""
+    echo "Example: Create .env.deployment file with:"
+    echo "  export VPS1_IP=\"your-vps-ip\""
+    echo "  export VPS1_USER=\"your-username\""
+    echo "  export VPS1_PASS=\"your-password\""
+    exit 1
+fi
 
 echo "=== TGP Deployment to VPS #1 ==="
+echo "Target: $VPS1_IP"
 echo "Building deployment package..."
 
 # Create deployment tarball
@@ -14,6 +30,7 @@ tar -czf /tmp/tgp-deploy.tar.gz \
     --exclude='target' \
     --exclude='.git' \
     --exclude='*.tar.gz' \
+    --exclude='.env*' \
     Cargo.toml Cargo.lock \
     core/ \
     proto/ \

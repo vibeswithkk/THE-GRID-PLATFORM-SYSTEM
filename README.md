@@ -3,8 +3,8 @@
 > Enterprise-grade distributed scheduler with economic job placement optimization
 
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
-[![Build Status](https://img.shields.io/badge/build-passing-brightgreen)](https://github.com/vibeswithkk/TDP)
-[![Version](https://img.shields.io/badge/version-0.1.0-blue)](https://github.com/vibeswithkk/TDP/releases)
+[![Build Status](https://img.shields.io/badge/build-passing-brightgreen)](https://github.com/WAHYU ARDIANSYAH/TDP)
+[![Version](https://img.shields.io/badge/version-0.1.0-blue)](https://github.com/WAHYU ARDIANSYAH/TDP/releases)
 
 ## Overview
 
@@ -94,7 +94,7 @@ TGP/
 
 ```bash
 # Clone repository
-git clone https://github.com/vibeswithkk/TDP.git
+git clone https://github.com/WAHYU ARDIANSYAH/TDP.git
 cd TDP
 
 # Build all components
@@ -424,7 +424,7 @@ git push origin feature/your-feature
 
 ## License
 
-Copyright 2024 vibeswithkk
+Copyright 2024 WAHYU ARDIANSYAH
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -446,8 +446,8 @@ See [LICENSE](LICENSE) file for details.
 
 ### Community
 
-- **GitHub Issues**: [Report bugs or request features](https://github.com/vibeswithkk/TDP/issues)
-- **Discussions**: [Join community discussions](https://github.com/vibeswithkk/TDP/discussions)
+- **GitHub Issues**: [Report bugs or request features](https://github.com/WAHYU ARDIANSYAH/TDP/issues)
+- **Discussions**: [Join community discussions](https://github.com/WAHYU ARDIANSYAH/TDP/discussions)
 
 ### Project Stats
 
@@ -472,4 +472,4 @@ Built with:
 
 **TGP** - Making distributed scheduling economical and efficient
 
-*Developed and maintained by [vibeswithkk](https://github.com/vibeswithkk)*
+*Developed and maintained by [WAHYU ARDIANSYAH](https://github.com/WAHYU ARDIANSYAH)*

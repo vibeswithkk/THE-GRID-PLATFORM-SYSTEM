@@ -14,7 +14,7 @@
 ssh root@YOUR_SCHEDULER_IP
 
 # Clone repository
-git clone git@github.com:vibeswithkk/TDP.git
+git clone git@github.com:WAHYU ARDIANSYAH/TDP.git
 cd TDP
 
 # Build and deploy scheduler

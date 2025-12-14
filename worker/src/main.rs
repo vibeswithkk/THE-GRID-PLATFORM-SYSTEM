@@ -3,7 +3,7 @@
 //! Responsibilities:
 //! - Register with scheduler via gRPC
 //! - Report resource availability periodically
-//! - Execute assigned jobs
+//! - Execute assigned jobs in Docker containers
 //! - Maintain connection health
 //!
 //! Design Principles:
@@ -13,7 +13,11 @@
 //! - Performance: Efficient resource monitoring, minimal overhead
 //! - Testability: Modular design, mockable components
 
+mod executor;
+
 use anyhow::{Context, Result};
+use executor::{JobExecution, JobExecutor};
+use std::collections::HashMap;
 use std::fs;
 use std::time::Duration;
 use tonic::transport::Channel;

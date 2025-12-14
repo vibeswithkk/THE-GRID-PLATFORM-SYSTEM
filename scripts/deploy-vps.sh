@@ -56,5 +56,5 @@ echo "=== Deployment Complete ==="
 ENDSSH
 
 echo ""
-echo "✅ TGP Scheduler deployed to VPS #1!"
+echo "[SUCCESS] TGP Scheduler deployed to VPS #1!"
 echo "Access: http://$VPS1_IP:50051"

@@ -60,4 +60,4 @@ journalctl -u tgp-worker -n 20 --no-pager
 ENDSSH
 
 echo ""
-echo "✅ TGP Worker deployed to VPS #2!"
+echo "[SUCCESS] TGP Worker deployed to VPS #2!"

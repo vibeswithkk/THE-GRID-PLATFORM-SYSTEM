@@ -16,6 +16,8 @@ tar -czf /tmp/tgp-deploy.tar.gz \
     --exclude='*.tar.gz' \
     Cargo.toml Cargo.lock \
     core/ \
+    proto/ \
+    worker/ \
     Dockerfile.scheduler \
     docker-compose.yml \
     Makefile \

@@ -97,16 +97,87 @@ impl EconomicScheduler {
     pub async fn schedule(&self, job: JobSpec) -> Result<Placement> {
         tracing::info!("Scheduling job: {}", job.id);
 
-        // TODO: Implement actual scheduling algorithm
-        // For now, return placeholder
-        let placement = Placement {
-            job_id: job.id.clone(),
-            node_id: "node-1".to_string(),
-            estimated_cost: TotalCost::default(),
-            estimated_latency_ms: 100,
-        };
+        if self.available_nodes.is_empty() {
+            anyhow::bail!("No nodes available in cluster");
+        }
 
-        Ok(placement)
+        let mut best_placement: Option<Placement> = None;
+        let mut min_cost = f64::MAX;
+
+        // Evaluate each node for placement
+        for node in self.available_nodes.values() {
+            // Check resource availability
+            if !self.check_resource_fit(&job.resources, node) {
+                tracing::debug!("Node {} insufficient resources", node.id);
+                continue;
+            }
+
+            // Calculate total cost for this placement
+            let estimated_duration = 1.0; // TODO: estimate based on job type
+            let data_size = 0.0; // TODO: get from job spec
+            
+            let cost = self.cost_calculator.total_cost(
+                node.cost_per_hour,
+                estimated_duration,
+                1.0, // 100% utilization during job
+                data_size,
+                0.0, // VPS-to-VPS transfer is free
+                0.0, // No idle cost during active job
+                0.0,
+            );
+
+            // Estimate latency based on node load
+            let estimated_latency = self.estimate_latency(node);
+
+            // Check SLA constraints
+            if estimated_latency > job.sla.max_latency_ms {
+                tracing::debug!("Node {} violates SLA latency requirement", node.id);
+                continue;
+            }
+
+            if let Some(max_budget) = job.sla.max_budget_usd {
+                if cost.total_usd > max_budget {
+                    tracing::debug!("Node {} exceeds budget constraint", node.id);
+                    continue;
+                }
+            }
+
+            // Track best placement (minimum cost)
+            if cost.total_usd < min_cost {
+                min_cost = cost.total_usd;
+                best_placement = Some(Placement {
+                    job_id: job.id.clone(),
+                    node_id: node.id.clone(),
+                    estimated_cost: cost,
+                    estimated_latency_ms: estimated_latency,
+                });
+                tracing::info!(
+                    "New best placement: {} on node {} (cost: ${:.4})",
+                    job.id, node.id, min_cost
+                );
+            }
+        }
+
+        best_placement.ok_or_else(|| anyhow::anyhow!("No suitable node found for job {}", job.id))
+    }
+
+    /// Check if node has sufficient resources for job
+    fn check_resource_fit(&self, required: &ResourceRequirements, node: &NodeInfo) -> bool {
+        node.available_cpu >= required.cpu_cores
+            && node.available_memory_gb >= required.memory_gb
+            && node.available_gpu >= required.gpu_count
+    }
+
+    /// Estimate job latency based on node characteristics
+    fn estimate_latency(&self, node: &NodeInfo) -> u64 {
+        // Simple estimation: base latency + resource pressure
+        let base_latency = 50; // 50ms base
+        
+        // Add latency if node is heavily utilized
+        let cpu_pressure = if node.available_cpu < 2 { 50 } else { 0 };
+        let mem_pressure = if node.available_memory_gb < 2 { 30 } else { 0 };
+        
+        base_latency + cpu_pressure + mem_pressure
     }
 
     /// Get cluster status

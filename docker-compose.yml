@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  scheduler:
+    build:
+      context: .
+      dockerfile: Dockerfile.scheduler
+    container_name: tgp-scheduler
+    ports:
+      - "50051:50051"
+    environment:
+      - RUST_LOG=info
+      - TGP_NODE_ID=zenith1
+      - TGP_NODE_LOCATION=vps-1
+    restart: unless-stopped
+    networks:
+      - tgp-network
+
+networks:
+  tgp-network:
+    driver: bridge

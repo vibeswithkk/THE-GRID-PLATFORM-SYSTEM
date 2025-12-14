@@ -18,6 +18,12 @@ service SchedulerService {
   
   // Get cluster status
   rpc GetClusterStatus(ClusterStatusRequest) returns (ClusterStatusResponse);
+  
+  // Assign job to worker (Scheduler → Worker)
+  rpc AssignJob(JobAssignment) returns (JobAssignmentAck);
+  
+  // Update job status (Worker → Scheduler)  
+  rpc UpdateJobStatus(JobStatusUpdate) returns (JobStatusUpdateAck);
 }
 
 // Node registration
@@ -135,4 +141,33 @@ message NodeInfo {
   double available_memory_gb = 4;
   string location = 5;
   bool is_active = 6;
+}
+
+// Job assignment (Scheduler → Worker)
+message JobAssignment {
+  string job_id = 1;
+  string job_type = 2;
+  string container_image = 3;
+  repeated string command = 4;
+  map<string, string> environment = 5;
+  uint32 cpu_limit = 6;
+  uint64 memory_limit_mb = 7;
+}
+
+message JobAssignmentAck {
+  bool accepted = 1;
+  string message = 2;
+}
+
+// Job status update (Worker → Scheduler)
+message JobStatusUpdate {
+  string job_id = 1;
+  JobStatus status = 2;
+  int64 exit_code = 3;
+  string logs = 4;
+  string error_message = 5;
+}
+
+message JobStatusUpdateAck {
+  bool received = 1;
 }

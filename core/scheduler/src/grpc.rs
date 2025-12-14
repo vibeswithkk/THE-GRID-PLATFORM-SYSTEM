@@ -3,7 +3,7 @@
 //! Implements the SchedulerService defined in scheduler.proto
 
 use tonic::{transport::Server, Request, Response, Status};
-use tracing::info;
+use tracing::{error, info};
 
 use crate::EconomicScheduler;
 
@@ -215,6 +215,51 @@ impl SchedulerService for EconomicScheduler {
             nodes: proto_nodes,
         };
 
+        Ok(Response::new(response))
+    }
+
+    async fn assign_job(
+        &self,
+        request: Request<JobAssignment>,
+    ) -> Result<Response<JobAssignmentAck>, Status> {
+        let assignment = request.into_inner();
+        info!("Assigning job {} to worker", assignment.job_id);
+
+        // TODO: Track job assignment and send to actual worker
+        // For now, just acknowledge
+        
+        let response = JobAssignmentAck {
+            accepted: true,
+            message: format!("Job {} assignment acknowledged", assignment.job_id),
+        };
+
+        Ok(Response::new(response))
+    }
+
+    async fn update_job_status(
+        &self,
+        request: Request<JobStatusUpdate>,
+    ) -> Result<Response<JobStatusUpdateAck>, Status> {
+        let update = request.into_inner();
+        
+        info!(
+            "Job status update: {} -> {:?} (exit code: {})",
+            update.job_id, update.status, update.exit_code
+        );
+
+        // Update job state based on worker report
+        let status = match update.status {
+            3 => crate::JobStatus::Running,
+            4 => crate::JobStatus::Completed,
+            5 => crate::JobStatus::Failed,
+            _ => crate::JobStatus::Running,
+        };
+
+        if let Err(e) = self.update_job_state(update.job_id, status, None) {
+            error!("Failed to update job state: {}", e);
+        }
+
+        let response = JobStatusUpdateAck { received: true };
         Ok(Response::new(response))
     }
 }

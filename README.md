@@ -231,7 +231,7 @@ cargo test
 
 ---
 
-## 🛣️ Roadmap
+##  Roadmap
 
 ### **Completed (Phases 1-6)
 - [x] Economic Scheduler with Formula 4.1

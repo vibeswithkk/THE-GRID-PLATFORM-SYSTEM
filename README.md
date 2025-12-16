@@ -51,6 +51,18 @@ C_total = C_comp + C_data + C_idle
 
 ---
 
+## Website & Live Demo
+
+**Try TGP without installing:** [https://tgp-dashboard.vercel.app](https://tgp-dashboard.vercel.app)
+
+The live demo includes:
+- Real-time cluster status monitoring
+- Job submission interface
+- Cost breakdown visualization (Formula 4.1)
+- Full dashboard experience
+
+---
+
 ## Quick Start
 
 ### Prerequisites
